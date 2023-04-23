@@ -14,7 +14,8 @@ function ProductsAPI() {
 
     useEffect(() =>{
         const getProducts = async () => {
-            const res = await clienteAxios.get(`/api/products?limit=${page*9}&${category}&${sort}&title[regex]=${search}`)
+            const urlback ='https://papeleria.up.railway.app'
+            const res = await clienteAxios.get(`${urlback}/api/products?limit=${page*9}&${category}&${sort}&title[regex]=${search}`)
             setProducts(res.data.products)
             setResult(res.data.result)
         }

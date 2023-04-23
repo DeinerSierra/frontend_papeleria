@@ -1,89 +1,97 @@
-import React, {useContext, useState} from 'react'
-import ProductsAPI from '../../../api/ProductsAPI'
-import {GlobalState} from '../../../GlobalState'
-import ProductItem from '../utils/productItem/ProductItem'
-import Loading from '../utils/loading/Loading'
-import clienteAxios from '../../../config/clienteAxios'
-import Filters from './Filters'
-import LoadMore from './LoadMore'
-
+import React, { useContext, useState } from "react";
+import { GlobalState } from "../../../GlobalState";
+import ProductItem from "../utils/productItem/ProductItem";
+import Loading from "../utils/loading/Loading";
+import clienteAxios from "../../../config/clienteAxios";
+import Filters from "./Filters";
+import LoadMore from "./LoadMore";
 
 function Products() {
-    const state = useContext(GlobalState)
-    const [products, setProducts] = ProductsAPI.products;
-    const [isAdmin] = state.userAPI.isAdmin
-    const [token] = state.token
-    const [callback, setCallback] = ProductsAPI.callback
-    const [loading, setLoading] = useState(false)
-    const [isCheck, setIsCheck] = useState(false)
+  const state = useContext(GlobalState);
+  const [products, setProducts] = state.productsAPI.products;
+  const [isAdmin] = state.userAPI.isAdmin;
+  const [token] = state.token;
+  const [callback, setCallback] = state.productsAPI.callback;
+  const [loading, setLoading] = useState(false);
+  const [isCheck, setIsCheck] = useState(false);
 
-    const handleCheck = (id) =>{
-        products.forEach(product => {
-            if(product._id === id) product.checked = !product.checked
-        })
-        setProducts([...products])
-    }
+  const handleCheck = (id) => {
+    products.forEach((product) => {
+      if (product._id === id) product.checked = !product.checked;
+    });
+    setProducts([...products]);
+  };
 
-    const deleteProduct = async(id, public_id) => {
-        try {
-            setLoading(true)
-            const destroyImg = clienteAxios.post('/api/destroy', {public_id},{
-                headers: {Authorization: token}
-            })
-            const deleteProduct = clienteAxios.delete(`/api/products/${id}`, {
-                headers: {Authorization: token}
-            })
-
-            await destroyImg
-            await deleteProduct
-            setCallback(!callback)
-            setLoading(false)
-        } catch (err) {
-            alert(err.response.data.msg)
-        }
-    }
-
-    const checkAll = () =>{
-        products.forEach(product => {
-            product.checked = !isCheck
-        })
-        setProducts([...products])
-        setIsCheck(!isCheck)
-    }
-
-    const deleteAll = () =>{
-        products.forEach(product => {
-            if(product.checked) deleteProduct(product._id, product.images.public_id)
-        })
-    }
-
-    if(loading) return <div><Loading /></div>
-    return (
-        <>
-        <Filters />
-        
+  const deleteProduct = async (id, public_id) => {
+    try {
+      setLoading(true);
+      const destroyImg = clienteAxios.post(
+        "/api/destroy",
+        { public_id },
         {
-            isAdmin && 
-            <div className="delete-all">
-                <span>Seleccionar todos</span>
-                <input type="checkbox" checked={isCheck} onChange={checkAll} />
-                <button onClick={deleteAll}>Eliminar Todos</button>
-            </div>
+          headers: { Authorization: token },
         }
+      );
+      const deleteProduct = clienteAxios.delete(`/api/products/${id}`, {
+        headers: { Authorization: token },
+      });
 
-        <div className="products">
-            {
-                Array.isArray(products) && products.map(product => {
-                    return <ProductItem key={product._id} product={product}
-                    isAdmin={isAdmin} deleteProduct={deleteProduct} handleCheck={handleCheck} />
-                })
-            } 
+      await destroyImg;
+      await deleteProduct;
+      setCallback(!callback);
+      setLoading(false);
+    } catch (err) {
+      alert(err.response.data.msg);
+    }
+  };
+
+  const checkAll = () => {
+    products.forEach((product) => {
+      product.checked = !isCheck;
+    });
+    setProducts([...products]);
+    setIsCheck(!isCheck);
+  };
+
+  const deleteAll = () => {
+    products.forEach((product) => {
+      if (product.checked) deleteProduct(product._id, product.images.public_id);
+    });
+  };
+
+  if (loading) return <Loading />;
+
+  return (
+    <>
+      <Filters />
+
+      {isAdmin && (
+        <div className="delete-all">
+          <span>Seleccionar todos</span>
+          <input type="checkbox" checked={isCheck} onChange={checkAll} />
+          <button onClick={deleteAll}>Eliminar Todos</button>
         </div>
+      )}
 
-        <LoadMore />
-        {products.length === 0 && <Loading />}
-        </>
-    )
+      <div className="products">
+        {Array.isArray(products) &&
+          products.map((product) => {
+            return (
+              <ProductItem
+                key={product._id}
+                product={product}
+                isAdmin={isAdmin}
+                deleteProduct={deleteProduct}
+                handleCheck={handleCheck}
+              />
+            );
+          })}
+      </div>
+
+      <LoadMore />
+      {Array.isArray(products) && products.length === 0 && <Loading />}
+    </>
+  );
 }
 
-export default Products
+export default Products;

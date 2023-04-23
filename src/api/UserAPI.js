@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import axios from 'axios'
+import clienteAxios from '../config/clienteAxios'
 
 function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
@@ -11,7 +11,7 @@ function UserAPI(token) {
         if(token){
             const getUser = async () =>{
                 try {
-                    const res = await axios.get('/user/infor', {
+                    const res = await clienteAxios.get('/user/infor', {
                         headers: {Authorization: token}
                     })
 
@@ -42,7 +42,7 @@ function UserAPI(token) {
         if(check){
             setCart([...cart, {...product, quantity: 1}])
 
-            await axios.patch('/user/addcart', {cart: [...cart, {...product, quantity: 1}]}, {
+            await clienteAxios.patch('/user/addcart', {cart: [...cart, {...product, quantity: 1}]}, {
                 headers: {Authorization: token}
             })
 

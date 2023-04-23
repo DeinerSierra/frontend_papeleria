@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "cliente",
-=======
   "name": "client",
->>>>>>> 8c012e5 (reintegro de version antigua)
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -40,17 +36,5 @@
       "last 1 safari version"
     ]
   },
-<<<<<<< HEAD
-  "proxy": "https://papeleria.up.railway.app",
-  "devDependencies": {
-    "workbox-webpack-plugin": "^6.5.4"
-  },
-  "static": {
-    "mimeTypes": {
-      ".js": "text/javascript"
-    }
-  }
-=======
   "proxy": "http://localhost:5000"
->>>>>>> 8c012e5 (reintegro de version antigua)
 }

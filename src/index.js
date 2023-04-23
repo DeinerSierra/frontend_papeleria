@@ -9,7 +9,3 @@ ReactDOM.render(<App />,
 );
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8c012e5 (reintegro de version antigua)

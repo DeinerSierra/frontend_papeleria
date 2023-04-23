@@ -1,11 +1,6 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {GlobalState} from '../../../GlobalState'
-<<<<<<< HEAD
-
-import axios from 'axios'
-=======
 import clienteAxios from '../../../config/clienteAxios'
->>>>>>> 8c012e5 (reintegro de version antigua)
 import { PayPalButton } from "react-paypal-button-v2";
 
 function Cart() {
@@ -28,11 +23,7 @@ function Cart() {
     },[cart])
 
     const addToCart = async (cart) =>{
-<<<<<<< HEAD
-        await axios.patch('https://papeleria.up.railway.app/user/addcart', {cart}, {
-=======
         await clienteAxios.patch('/user/addcart', {cart}, {
->>>>>>> 8c012e5 (reintegro de version antigua)
             headers: {Authorization: token}
         })
     }
@@ -76,21 +67,13 @@ function Cart() {
     const tranSuccess = async(payment) => {
         const {paymentID, address} = payment;
 
-<<<<<<< HEAD
-        await axios.post('https://papeleria.up.railway.app/api/payment', {cart, paymentID, address}, {
-=======
         await clienteAxios.post('/api/payment', {cart, paymentID, address}, {
->>>>>>> 8c012e5 (reintegro de version antigua)
             headers: {Authorization: token}
         })
 
         setCart([])
         addToCart([])
-<<<<<<< HEAD
-        alert("Tu compra ha tenido exito.")
-=======
         alert("You have successfully placed an order.")
->>>>>>> 8c012e5 (reintegro de version antigua)
     }
     
 

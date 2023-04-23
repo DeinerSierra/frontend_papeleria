@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react'
+import ProductsAPI from '../../../api/ProductsAPI'
 import {GlobalState} from '../../../GlobalState'
 import ProductItem from '../utils/productItem/ProductItem'
 import Loading from '../utils/loading/Loading'
@@ -9,10 +10,10 @@ import LoadMore from './LoadMore'
 
 function Products() {
     const state = useContext(GlobalState)
-    const [products, setProducts] = state.productsAPI.products
+    const [products, setProducts] = ProductsAPI.products ?? [];
     const [isAdmin] = state.userAPI.isAdmin
     const [token] = state.token
-    const [callback, setCallback] = state.productsAPI.callback
+    const [callback, setCallback] = ProductsAPI.callback
     const [loading, setLoading] = useState(false)
     const [isCheck, setIsCheck] = useState(false)
 

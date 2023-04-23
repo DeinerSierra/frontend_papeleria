@@ -2,8 +2,9 @@ import React, {createContext, useState, useEffect} from 'react'
 import ProductsAPI from './api/ProductsAPI'
 import UserAPI from './api/UserAPI'
 import CategoriesAPI from './api/CategoriesAPI'
+import clienteAxios from './config/clienteAxios'
 
-import axios from 'axios'
+//import axios from 'axios'
 
 export const GlobalState = createContext()
 
@@ -16,7 +17,7 @@ export const DataProvider = ({children}) =>{
         const firstLogin = localStorage.getItem('firstLogin')
         if(firstLogin){
             const refreshToken = async () =>{
-                const res = await axios.get('/user/refresh_token')
+                const res = await clienteAxios.get('/user/refresh_token')
 
                 setToken(res.data.accesstoken)
 

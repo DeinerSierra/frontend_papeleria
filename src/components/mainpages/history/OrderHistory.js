@@ -1,12 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import {GlobalState} from '../../../GlobalState'
 import {Link} from 'react-router-dom'
-<<<<<<< HEAD
-
-import axios from 'axios'
-=======
 import clienteAxios from '../../../config/clienteAxios'
->>>>>>> 8c012e5 (reintegro de version antigua)
 
 function OrderHistory() {
     const state = useContext(GlobalState)
@@ -19,20 +14,12 @@ function OrderHistory() {
         if(token){
             const getHistory = async() =>{
                 if(isAdmin){
-<<<<<<< HEAD
-                    const res = await axios.get('https://papeleria.up.railway.app/api/payment', {
-=======
                     const res = await clienteAxios.get('/api/payment', {
->>>>>>> 8c012e5 (reintegro de version antigua)
                         headers: {Authorization: token}
                     })
                     setHistory(res.data)
                 }else{
-<<<<<<< HEAD
-                    const res = await axios.get('https://papeleria.up.railway.app/user/history', {
-=======
                     const res = await clienteAxios.get('/user/history', {
->>>>>>> 8c012e5 (reintegro de version antigua)
                         headers: {Authorization: token}
                     })
                     setHistory(res.data)
@@ -62,11 +49,7 @@ function OrderHistory() {
                             <tr key={items._id}>
                                 <td>{items.paymentID}</td>
                                 <td>{new Date(items.createdAt).toLocaleDateString()}</td>
-<<<<<<< HEAD
-                                <td><Link to={`https://papeleria.up.railway.app/history/${items._id}`}>View</Link></td>
-=======
                                 <td><Link to={`/history/${items._id}`}>View</Link></td>
->>>>>>> 8c012e5 (reintegro de version antigua)
                             </tr>
                         ))
                     }

@@ -1,11 +1,7 @@
 import React, {useState, useContext} from 'react'
 import {GlobalState} from '../../../GlobalState'
-<<<<<<< HEAD
-import axios from 'axios'
-=======
 import clienteAxios from '../../../config/clienteAxios'
 
->>>>>>> 8c012e5 (reintegro de version antigua)
 function Categories() {
     const state = useContext(GlobalState)
     const [categories] = state.categoriesAPI.categories
@@ -19,20 +15,12 @@ function Categories() {
         e.preventDefault()
         try {
             if(onEdit){
-<<<<<<< HEAD
-                const res = await axios.put(`https://papeleria.up.railway.app/api/category/${id}`, {name: category}, {
-=======
                 const res = await clienteAxios.put(`/api/category/${id}`, {name: category}, {
->>>>>>> 8c012e5 (reintegro de version antigua)
                     headers: {Authorization: token}
                 })
                 alert(res.data.msg)
             }else{
-<<<<<<< HEAD
-                const res = await axios.post('https://papeleria.up.railway.app/api/category', {name: category}, {
-=======
                 const res = await clienteAxios.post('/api/category', {name: category}, {
->>>>>>> 8c012e5 (reintegro de version antigua)
                     headers: {Authorization: token}
                 })
                 alert(res.data.msg)
@@ -54,11 +42,7 @@ function Categories() {
 
     const deleteCategory = async id =>{
         try {
-<<<<<<< HEAD
-            const res = await axios.delete(`https://papeleria.up.railway.app/api/category/${id}`, {
-=======
             const res = await clienteAxios.delete(`/api/category/${id}`, {
->>>>>>> 8c012e5 (reintegro de version antigua)
                 headers: {Authorization: token}
             })
             alert(res.data.msg)

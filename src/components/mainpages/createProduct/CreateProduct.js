@@ -1,10 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
-<<<<<<< HEAD
-
-import axios from 'axios'
-=======
 import clienteAxios from '../../../config/clienteAxios'
->>>>>>> 8c012e5 (reintegro de version antigua)
 import {GlobalState} from '../../../GlobalState'
 import Loading from '../utils/loading/Loading'
 import {useHistory, useParams} from 'react-router-dom'
@@ -71,11 +66,7 @@ function CreateProduct() {
             formData.append('file', file)
 
             setLoading(true)
-<<<<<<< HEAD
-            const res = await axios.post('https://papeleria.up.railway.app/api/upload', formData, {
-=======
             const res = await clienteAxios.post('/api/upload', formData, {
->>>>>>> 8c012e5 (reintegro de version antigua)
                 headers: {'content-type': 'multipart/form-data', Authorization: token}
             })
             setLoading(false)
@@ -90,11 +81,7 @@ function CreateProduct() {
         try {
             if(!isAdmin) return alert("No tienes los permisos requeridos")
             setLoading(true)
-<<<<<<< HEAD
-            await axios.post('https://papeleria.up.railway.app/api/destroy', {public_id: images.public_id}, {
-=======
             await clienteAxios.post('/api/destroy', {public_id: images.public_id}, {
->>>>>>> 8c012e5 (reintegro de version antigua)
                 headers: {Authorization: token}
             })
             setLoading(false)
@@ -116,19 +103,11 @@ function CreateProduct() {
             if(!images) return alert("No agregaste la imagen")
 
             if(onEdit){
-<<<<<<< HEAD
-                await axios.put(`https://papeleria.up.railway.app/api/products/${product._id}`, {...product, images}, {
-                    headers: {Authorization: token}
-                })
-            }else{
-                await axios.post('https://papeleria.up.railway.app/api/products', {...product, images}, {
-=======
                 await clienteAxios.put(`/api/products/${product._id}`, {...product, images}, {
                     headers: {Authorization: token}
                 })
             }else{
                 await clienteAxios.post('/api/products', {...product, images}, {
->>>>>>> 8c012e5 (reintegro de version antigua)
                     headers: {Authorization: token}
                 })
             }

@@ -1,8 +1,4 @@
 import {useState, useEffect} from 'react'
-<<<<<<< HEAD
-
-=======
->>>>>>> 8c012e5 (reintegro de version antigua)
 import axios from 'axios'
 
 
@@ -16,22 +12,11 @@ function ProductsAPI() {
     const [result, setResult] = useState(0)
 
     useEffect(() =>{
-<<<<<<< HEAD
-        
-        const getProducts = async () => {
-            const res = await axios.get(`https://papeleria.up.railway.app/api/products?limit=${page*9}&${category}&${sort}&title[regex]=${search}`)
-            console.log(res);
-            setProducts(res.data.products)
-            setResult(res.data.result)
-        }
-        
-=======
         const getProducts = async () => {
             const res = await axios.get(`/api/products?limit=${page*9}&${category}&${sort}&title[regex]=${search}`)
             setProducts(res.data.products)
             setResult(res.data.result)
         }
->>>>>>> 8c012e5 (reintegro de version antigua)
         getProducts()
     },[callback, category, sort, search, page])
     

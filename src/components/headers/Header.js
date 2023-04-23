@@ -4,10 +4,7 @@ import Menu from './icon/menu.svg'
 import Close from './icon/close.svg'
 import Cart from './icon/cesta.svg'
 import {Link} from 'react-router-dom'
-<<<<<<< HEAD
-=======
 //import logo from './icon/logo.png'
->>>>>>> 8c012e5 (reintegro de version antigua)
 import logo1 from './icon/logo-sin-bg.png'
 import axios from 'axios'
 
